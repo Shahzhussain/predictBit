@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import glob # Library to find all files matching a pattern
 
+
 def combine_all_engineered_data(output_name="final_master_dataset.csv"):
     engineered_dir = "../data_engineered"
     
@@ -19,6 +20,16 @@ def combine_all_engineered_data(output_name="final_master_dataset.csv"):
     all_data = []
     for filename in all_engineered_files:
         df = pd.read_csv(filename)
+
+        # Drop rows with missing essential columns to ensure cleaner master dataset
+        essential_cols = ['open', 'high', 'low', 'close', 'volume']
+        for col in essential_cols:
+            if col in df.columns:
+                before_drop = df.shape[0]
+                df = df[df[col].notnull()]
+                after_drop = df.shape[0]
+                print(f"Dropped {before_drop - after_drop} rows with missing '{col}' in {filename}")
+
         all_data.append(df)
         
     # 3. Concatenate them into a single DataFrame

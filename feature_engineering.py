@@ -50,6 +50,16 @@ def load_merged(file_name):
     print(f"📥 Loading merged dataset: {path}")
 
     df = pd.read_csv(path)
+    df.columns = df.columns.str.strip()  # Strip whitespace characters from columns
+
+    # Drop rows where essential columns are missing to prevent NaNs downstream
+    essential_cols = ['open', 'high', 'low', 'close', 'volume']
+    for col in essential_cols:
+        if col in df.columns:
+            before_drop = df.shape[0]
+            df = df[df[col].notnull()]
+            after_drop = df.shape[0]
+            print(f"Dropped {before_drop - after_drop} rows with missing '{col}'")
 
     df["date"] = pd.to_datetime(df["date"])
 
@@ -143,4 +153,4 @@ def run_feature_engineering(merged_file, output_file):
 # CALL HERE
 # ---------------------------------------------------
 # Example:
-run_feature_engineering("merged_2022.csv", "engineered_2022.csv")
+run_feature_engineering("merged_2024.csv", "engineered_2024.csv")
