@@ -1,0 +1,21 @@
+
+RANDOM FOREST (SAFE)
+Accuracy: 0.9589
+Precision: 0.9727
+Recall: 0.9469
+F1: 0.9596
+
+Confusion Matrix:
+[[103   3]
+ [  6 107]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.94      0.97      0.96       106
+           1       0.97      0.95      0.96       113
+
+    accuracy                           0.96       219
+   macro avg       0.96      0.96      0.96       219
+weighted avg       0.96      0.96      0.96       219
+

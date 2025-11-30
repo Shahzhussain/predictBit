@@ -104,6 +104,6 @@ def merge_price_and_tweets(price_file, tweet_file, output_name):
 if __name__ == "__main__":
     # Hardcoded filenames
     price_file = "prices_2022.csv"
-    tweet_file = "tweets_2021_P + SA.xlsx"
+    tweet_file = "tweets_2022.csv"
     output_name = "merged_2022.csv"
     merge_price_and_tweets(price_file, tweet_file, output_name)
